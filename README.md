@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # OneForAll
 
 [![Build Status](https://travis-ci.org/shmilylty/OneForAll.svg?branch=master)](https://travis-ci.org/shmilylty/OneForAll)
@@ -312,3 +313,6 @@ FLAGS
 ## 💖Star趋势
 
 [![Stargazers over time](https://starchart.cc/shmilylty/OneForAll.svg)](https://starchart.cc/shmilylty/OneForAll)
+=======
+# OneForAll-Flask
+>>>>>>> 226c05b650acac61f731a33b808022bd6e817668
