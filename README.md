@@ -38,7 +38,7 @@ python flask_api.py
 
 移到vps后台运行可以看这篇文章 https://blog.csdn.net/qq_34562959/article/details/130519967
 
-OneForAll原版配置可以在setting里面改,https://github.com/shmilylty/OneForAll,作者写的很详细了
+OneForAll原版配置可以在setting里面改,https://github.com/shmilylty/OneForAll 作者写的很详细了
 
 感谢原作者!
 
