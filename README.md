@@ -9,11 +9,15 @@
 打开 flask_api.py 文件
 
 端口配置在最下面的
+
 app.run(host="0.0.0.0" ,port=30100, threaded=True)
+
 将port参数改成自己想要的端口即可
 
 最上面有两个参数
+
 path_token = "abcdefghijklmn"
+
 cookie_token = "admin123456"
 
 我一直在想这么差劲的项目如何搞好安全,不能被别人访问,因为有几个接口名为index、file 等等,很容易泄露
@@ -21,6 +25,7 @@ path_token 为路径节点
 可以去随机密码生成器处生成,网上有很多
 
 设置完 path_token 之后
+
 访问 127.0.0.1:30100/abcdefghijklmn(ip:port/path_token)
 
 然后会出现输入token的框
