@@ -10,13 +10,13 @@ cookie_token = "abcdefghijklmn"
 
 def validate_token(func):
     def decorated_func(*args, **kwargs):
-        token = request.cookies.get('token')  # 获取名为'token'的cookie值
-        if token == cookie_token:  # 替换为您的实际token验证逻辑
+        token = request.cookies.get('token')  
+        if token == cookie_token:  
             print(token)
-            return func(*args, **kwargs)  # 验证通过，继续执行被装饰的路由处理函数
+            return func(*args, **kwargs)  
         else:
             return '', 404
-    decorated_func.__name__ = f"decorated_{func.__name__}"  # 更新包装函数的名称
+    decorated_func.__name__ = f"decorated_{func.__name__}"  
     return decorated_func
 
 
@@ -115,7 +115,7 @@ def download_file():
     filename = request.args.get('filename')
     print('download: '+filename)
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    filepath = os.path.join(script_dir + '/results', filename)  # 替换为你存放文件的路径
+    filepath = os.path.join(script_dir + '/results', filename)  
     return send_file(filepath, as_attachment=True)
 
 @app.route('/delete', methods=['POST'])
@@ -124,7 +124,7 @@ def delete_file():
     filename = request.form.get('filename')
     print('delete: ',filename)
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    filepath = os.path.join(script_dir + '/results', filename)  # 替换为你存放文件的路径
+    filepath = os.path.join(script_dir + '/results', filename)  
     if os.path.exists(filepath):
         os.remove(filepath)
         return jsonify({'message': 'File deleted successfully'})
