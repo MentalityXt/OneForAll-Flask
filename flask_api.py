@@ -5,8 +5,8 @@ import test
 
 app = Flask(__name__)
 
-path_token = "sZTZs7xW9zvdmk4ObrRXLBA58htLJqcmYwGpWl43bqPevzhT01"
-cookie_token = "U7WMGLlc0TtzsIErKa8hTqaci5SMOvPLDaVCgycoow1ed7FaRoQ1KkFg8YN5hRmP2v1iQa"
+path_token = "abcdefghijklmn"
+cookie_token = "abcdefghijklmn"
 
 def validate_token(func):
     def decorated_func(*args, **kwargs):
