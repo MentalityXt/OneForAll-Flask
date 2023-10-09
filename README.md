@@ -31,7 +31,9 @@ path_token 为路径节点
 
 
 # 使用教程:
+
 pip install -r requirements.txt
+
 python flask_api.py
 
 移到vps后台运行可以看这篇文章 https://blog.csdn.net/qq_34562959/article/details/130519967
