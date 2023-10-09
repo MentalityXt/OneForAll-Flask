@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>文件管理系统</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+        <br>
+      <h1>文件管理系统</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>文件名</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="file-list">
+        </tbody>
+      </table>
+    </div>
+    <script>
+      $(document).ready(function() {
+        // 获取文件列表
+        $.get("/files", function(data) {
+          var fileList = "";
+          for (var i = 0; i < data.length; i++) {
+            fileList += "<tr><td>" + data[i] + "</td><td><button class='btn btn-danger delete-btn' data-filename='" + data[i] + "'>删除</button> <button class='btn btn-primary download-btn' data-filename='" + data[i] + "'>下载</button></td></tr>";
+          }
+          $("#file-list").html(fileList);
+        });
+
+        // 删除文件
+        $(document).on("click", ".delete-btn", function() {
+          var filename = $(this).data("filename");
+          $.post("/delete", {"filename": filename}, function(data) {
+            alert(data.message);
+            location.reload();
+          });
+        });
+
+        // 下载文件
+        $(document).on("click", ".download-btn", function() {
+          var filename = $(this).data("filename");
+          window.location.href = "/download?filename=" + filename;
+        });
+      });
+    </script>
+  </body>
+</html>

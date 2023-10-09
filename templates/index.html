@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subdomain Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="url"],
+	input[type="submit"],
+	input[type="file"] {
+            margin-top: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+	    display: block;
+	    margin-top: 10px;
+        }
+	
+	/* Styling for the "查看文件" button */
+	.file-button {
+	    background-color: #008CBA;
+	    color: white;
+	    padding: 10px 20px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	    margin: 4px 2px;
+	    cursor: pointer;
+	    border-radius: 5px;
+	}
+    </style>
+</head>
+<body>
+    <h2>提交域名</h2>
+    <form action="/getSubdomain" method="get" onsubmit="event.preventDefault(); getSubdomain(this);">
+        <input type="text" name="domain" placeholder="输入域名">
+        <input type="submit" value="提交">
+    </form>
+    
+    <hr>
+
+    <h2>上传文件</h2>
+    <form action="/uploadSubdomain" method="post" enctype="multipart/form-data"
+          onsubmit="event.preventDefault(); submitForm(this);">
+        <input type="file" name="file">
+        <br>
+        <input type="submit" value="提交">
+    </form>
+
+    <hr><br>
+
+    <a class="file-button" href="/getFile">查看文件</a>
+
+    <script>
+        function getSubdomain(form) {
+    const domain = form.elements.domain.value; // 获取用户输入的域名
+
+    const url = form.action + '?' + new URLSearchParams(new FormData(form)).toString();
+
+    fetch(url)
+        .then(response => response)
+        .then(data => handleGetSubdomainResponse(data, domain)) // 将域名作为参数传递给处理函数
+        .catch(error => {
+            console.error('Error:', error);
+            alert('获取子域名错误1');
+        });
+}
+
+function handleGetSubdomainResponse(response, domain) {
+    if (response.status === 200) {
+        alert(`子域名：${domain}`);
+    } else {
+        alert('获取子域名错误2');
+    }
+}
+
+function submitForm(form) {
+    const url = form.action;
+    const formData = new FormData(form);
+
+    fetch(url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json()) // 解析为JSON数据
+    .then(data => handleUploadResponse(data))
+    .catch(error => {
+        console.error('Error:', error);
+        alert('提交错误1');
+    });
+}
+
+function handleUploadResponse(response) {
+    if (response.status === 200) {
+        alert('上传成功');
+    } else {
+        alert('提交错误2');
+    }
+}
+
+    </script>
+</body>
+</html>

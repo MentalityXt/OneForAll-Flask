@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Token Submission</title>
+    <style>
+        /* CSS样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Token Submission</h1>
+    <input type="text" id="tokenInput" placeholder="Enter token">
+    <button onclick="submitToken()">Submit</button>
+
+<script>
+    // JavaScript代码
+    function submitToken() {
+        var token = document.getElementById("tokenInput").value;
+
+        // 构造JSON数据
+        var data = { "token": token };
+
+        // 发送POST请求
+        fetch('/set_cookie', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            // 在此处进行结果处理
+
+            // 验证成功后执行重定向
+            if (result.success) {
+                window.location.href = '/index';
+            }
+        })
+        .catch(error => console.log(error));
+    }
+</script>
+</body>
+</html>

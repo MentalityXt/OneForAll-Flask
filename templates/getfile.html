@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>文件管理</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #333;
+        }
+        
+        #file-list {
+            margin-bottom: 20px;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        #actions {
+            margin-top: 20px;
+        }
+        
+        form {
+            margin-bottom: 10px;
+        }
+        
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+        
+        input[type="submit"] {
+            margin-left: 5px;
+        }
+    </style>
+    <script>
+        function populateSelectOptions() {
+            fetch('/files')
+                .then(response => response.json())
+                .then(data => {
+                    const selectElements = document.querySelectorAll('select');
+                    selectElements.forEach(selectElement => {
+                        data.forEach(file => {
+                            const option = document.createElement('option');
+                            option.value = file;
+                            option.text = file;
+                            selectElement.add(option);
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            populateSelectOptions();
+        });
+    </script>
+</head>
+<body>
+    <h1>文件管理</h1>
+
+    <div id="file-list">
+        <h2>文件列表</h2>
+        <ul id="files"></ul>
+    </div>
+
+    <div id="actions">
+        <h2>操作</h2>
+        <form id="download-form" action="/download" method="post">
+            <label for="filename">下载文件：</label>
+            <select id="filename" name="filename"></select>
+            <input type="submit" value="下载">
+        </form>
+        <form id="delete-form" action="/delete" method="post">
+            <label for="filename">删除文件：</label>
+            <select id="filename" name="filename"></select>
+            <input type="submit" value="删除">
+        </form>
+    </div>
+</body>
+</html>
