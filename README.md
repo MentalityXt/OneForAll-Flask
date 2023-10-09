@@ -30,7 +30,7 @@ path_token 为路径节点
 # -------------------------------------------------------------------
 
 
-#使用教程:
+# 使用教程:
 pip install -r requirements.txt
 python flask_api.py
 
