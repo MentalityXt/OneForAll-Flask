@@ -21,7 +21,9 @@ path_token = "abcdefghijklmn"
 cookie_token = "admin123456"
 
 我一直在想这么差劲的项目如何搞好安全,不能被别人访问,因为有几个接口名为index、file 等等,很容易泄露
+
 path_token 为路径节点
+
 可以去随机密码生成器处生成,网上有很多
 
 设置完 path_token 之后
