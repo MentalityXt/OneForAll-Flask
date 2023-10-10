@@ -52,3 +52,27 @@ OneForAll原版配置可以在setting里面改,https://github.com/shmilylty/OneF
 
 感谢原作者!
 
+# 运行截图
+
+![1.png](https://github.com/MentalityXt/OneForAll-Flask/blob/main/images/1.png)
+
+
+![2.png](https://github.com/MentalityXt/OneForAll-Flask/blob/main/images/2.png)
+
+
+![3.png](https://github.com/MentalityXt/OneForAll-Flask/blob/main/images/3.png)
+
+# 一些我发现的问题
+
+1、没有一个好看的界面和更多的选项
+
+2、为了安全和隐蔽性需要输入两次token，对于其他人返回只有404+空页面，但是回包的 Server:Werkzeug/2.0.3 Python/3.6.8 会显示出来，其他人会知道该端口开启了服务，并且指纹都能看到
+
+3、对于文件管理系统，我并没有测任意文件下载方面的漏洞，我个人感觉很大概率有，但是下载的时候要验证token，只有自己会用，我就没管
+
+4、文件管理系统没有跳转页面的功能，比如temp子文件夹，无法跳转看里面的情况，因为每个域名扫描结果是移到results文件夹里的 域名.csv 的，加上可能需要下载sqlite的数据库，我就把文件管理系统只做到了 results 文件夹，temp文件夹里更多的是跑输出的json类型的数据，属于原始数据，而 results 文件夹里的csv数据算是整理好了的
+
+# 后面的想法
+
+后续可能有想法将后端接口对接 goby,awvs 等扫描器，但是跑子域并不等于所有的资产都能处理完，所以需要一种fofa，hunter，同ip资产 等等能一起处理资产的工具或者方法,而fofa和hunter的api接口都需要付费，所以后续的想法就是利用arl跑完之后，在运行oneforall的接口跑完，最后全部整合放到goby里统一漏扫，算是一种集成的方法了
+
